@@ -9,7 +9,6 @@
     const fileInput        = $("fileInput");
     const controls         = $("controls");
     const previewImage     = $("previewImage");
-    const previewBadge     = $("previewBadge");
     const fileName         = $("fileName");
     const fileSize         = $("fileSize");
     const removeBtn        = $("removeBtn");
@@ -83,16 +82,10 @@
         const url = URL.createObjectURL(file);
         previewImage.src = url;
 
-        const img = new Image();
-        img.onload = () => {
-            previewBadge.textContent = `${img.width}×${img.height}`;
-        };
-        img.src = url;
-
         fileName.textContent = file.name;
         fileSize.textContent = formatBytes(file.size);
 
-        uploadZone.style.display = "none";
+        uploadSection.querySelector(".upload-zone").style.display = "none";
         controls.style.display = "flex";
         controls.classList.add("fade-in");
     }

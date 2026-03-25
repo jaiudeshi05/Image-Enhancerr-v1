@@ -6,27 +6,34 @@
     <title>Real-ESRGAN — AI Image Enhancer</title>
     <meta name="description" content="Enhance and upscale images up to 4× using Real-ESRGAN deep learning super resolution">
     <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="/static/style.css">
 </head>
 <body>
-    <!-- Animated background orbs -->
-    <div class="bg-orbs">
-        <div class="orb orb-1"></div>
-        <div class="orb orb-2"></div>
-        <div class="orb orb-3"></div>
+    <!-- Dynamic Background Scene -->
+    <div class="bg-scene">
+        <div class="bg-grid"></div>
+        <div class="shape shape-1"></div>
+        <div class="shape shape-2"></div>
+        <div class="shape shape-3"></div>
+        <div class="shape shape-4"></div>
     </div>
+    
+    <!-- Noise Texture Overlay -->
+    <div class="noise-texture"></div>
 
     <div class="app-container">
         <!-- Header -->
         <header class="app-header">
             <div class="logo">
-                <svg class="logo-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                    <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/>
+                <svg class="logo-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                    <path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/>
+                    <polyline points="3.27 6.96 12 12.01 20.73 6.96"/>
+                    <line x1="12" y1="22.08" x2="12" y2="12"/>
                 </svg>
                 <div>
                     <h1>Real-ESRGAN</h1>
-                    <p class="subtitle">AI-Powered Image Super Resolution</p>
+                    <p class="subtitle">Next-Gen Image Super Resolution</p>
                 </div>
             </div>
             <div class="status-badge" id="statusBadge">
@@ -41,58 +48,58 @@
             <section class="upload-section" id="uploadSection">
                 <div class="upload-zone" id="uploadZone" tabindex="0" role="button" aria-label="Upload image">
                     <div class="upload-icon">
-                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
-                            <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
-                            <polyline points="17 8 12 3 7 8"/>
-                            <line x1="12" y1="3" x2="12" y2="15"/>
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.25">
+                            <rect x="3" y="3" width="18" height="18" rx="2" ry="2"/>
+                            <circle cx="8.5" cy="8.5" r="1.5"/>
+                            <polyline points="21 15 16 10 5 21"/>
                         </svg>
                     </div>
-                    <h2>Drop your image here</h2>
-                    <p>or click to browse · JPEG, PNG, BMP, WEBP · Max 10 MB</p>
+                    <h2>Enhance Your Vision</h2>
+                    <p>Drop image here or click to browse · JPEG, PNG, WEBP</p>
                     <input type="file" id="fileInput" accept="image/jpeg,image/png,image/bmp,image/webp" hidden>
                 </div>
 
                 <!-- Scale selector -->
                 <div class="controls" id="controls" style="display:none;">
-                    <div class="preview-card">
+                    <div class="preview-card glass-card">
                         <div class="preview-image-wrap">
                             <img id="previewImage" alt="Preview of uploaded image">
-                            <div class="preview-badge" id="previewBadge"></div>
                         </div>
                         <div class="preview-info">
                             <span class="file-name" id="fileName"></span>
                             <span class="file-size" id="fileSize"></span>
                         </div>
                         <button class="btn-remove" id="removeBtn" title="Remove image">
-                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
                                 <line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/>
                             </svg>
                         </button>
                     </div>
 
-                    <div class="scale-selector">
-                        <label>Upscale Factor</label>
+                    <div class="scale-selector glass-card">
+                        <label>Upscale Resolution</label>
                         <div class="scale-options">
-                            <button class="scale-btn" data-scale="2">2×</button>
-                            <button class="scale-btn active" data-scale="4">4×</button>
+                            <button class="scale-btn" data-scale="2">2X</button>
+                            <button class="scale-btn active" data-scale="4">4X</button>
                         </div>
                     </div>
 
-                    <button class="btn-enhance" id="enhanceBtn">
-                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                            <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/>
+                    <button class="btn-primary" id="enhanceBtn">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                            <polyline points="23 4 23 10 17 10"/><polyline points="1 20 1 14 7 14"/>
+                            <path d="M3.51 9a9 9 0 0 1 14.85-3.36L23 10M1 14l4.64 4.36A9 9 0 0 0 20.49 15"/>
                         </svg>
-                        <span>Enhance Image</span>
+                        <span>Start Enhancement</span>
                     </button>
                 </div>
             </section>
 
             <!-- Progress Section -->
             <section class="progress-section" id="progressSection" style="display:none;">
-                <div class="progress-card">
+                <div class="progress-card glass-card">
                     <div class="spinner"></div>
-                    <h2>Enhancing your image...</h2>
-                    <p>This may take a moment depending on image size</p>
+                    <h2>Processing...</h2>
+                    <p>Reaching deep into the pixels to reconstruct detail</p>
                     <div class="progress-bar-track">
                         <div class="progress-bar-fill" id="progressFill"></div>
                     </div>
@@ -102,18 +109,15 @@
             <!-- Result Section -->
             <section class="result-section" id="resultSection" style="display:none;">
                 <div class="result-header">
-                    <h2>Enhancement Complete</h2>
+                    <h2>Masterwork Created</h2>
                     <div class="result-meta">
                         <span class="meta-chip" id="originalSize"></span>
-                        <svg class="arrow-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                            <line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/>
-                        </svg>
                         <span class="meta-chip enhanced" id="enhancedSize"></span>
                     </div>
                 </div>
 
                 <!-- Comparison slider -->
-                <div class="comparison-container" id="comparisonContainer">
+                <div class="comparison-container glass-card" id="comparisonContainer">
                     <div class="comparison-wrapper" id="comparisonWrapper">
                         <img class="comparison-img img-enhanced" id="enhancedImg" alt="Enhanced image">
                         <div class="comparison-overlay" id="comparisonOverlay">
@@ -121,37 +125,36 @@
                         </div>
                         <div class="comparison-slider" id="comparisonSlider">
                             <div class="slider-handle">
-                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
-                                    <polyline points="15 18 9 12 15 6"/><polyline points="9 18 15 12 9 6" transform="translate(6,0)"/>
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3">
+                                    <polyline points="13 17 18 12 13 7"/><polyline points="6 17 11 12 6 7"/>
                                 </svg>
                             </div>
                         </div>
-                        <div class="comparison-label label-original">Original</div>
+                        <div class="comparison-label label-original">Raw</div>
                         <div class="comparison-label label-enhanced">Enhanced</div>
                     </div>
                 </div>
 
                 <div class="result-actions">
-                    <button class="btn-download" id="downloadBtn">
-                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <button class="btn-primary btn-download" id="downloadBtn">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
                             <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
-                            <polyline points="7 10 12 15 17 10"/>
-                            <line x1="12" y1="15" x2="12" y2="3"/>
+                            <polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/>
                         </svg>
-                        <span>Download Enhanced</span>
+                        <span>Save Image</span>
                     </button>
-                    <button class="btn-new" id="newBtn">
-                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                            <line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/>
+                    <button class="btn-secondary" id="newBtn">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                            <path d="M12 5v14M5 12h14"/>
                         </svg>
-                        <span>New Image</span>
+                        <span>Upscale Another</span>
                     </button>
                 </div>
             </section>
         </main>
 
         <footer class="app-footer">
-            <p>Powered by <strong>Real-ESRGAN</strong> · RRDBNet 6-block · 4× Super Resolution</p>
+            <p>Built with <strong>Real-ESRGAN</strong> tiny · Super Resolution Engine v1.0</p>
         </footer>
     </div>
 
